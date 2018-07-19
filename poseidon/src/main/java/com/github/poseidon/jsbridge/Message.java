@@ -6,11 +6,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-/**
- * data of bridge
- *
- * @author haoqing
- */
 public class Message {
 
     private String callbackId; //callbackId
@@ -95,10 +90,10 @@ public class Message {
         return String.format(BridgeUtil.JS_HANDLE_MESSAGE_FROM_JAVA, messageJson);
     }
 
-    public static Message toObject(String jsonStr) {
-        Message m = new Message();
+    public static Message getMessageFromJson(String jsonStr) {
         try {
             JSONObject jsonObject = new JSONObject(jsonStr);
+            Message m = new Message();
             m.setHandlerName(jsonObject.has(HANDLER_NAME_STR) ? jsonObject.getString(HANDLER_NAME_STR) : null);
             m.setCallbackId(jsonObject.has(CALLBACK_ID_STR) ? jsonObject.getString(CALLBACK_ID_STR) : null);
             m.setResponseData(jsonObject.has(RESPONSE_DATA_STR) ? jsonObject.getString(RESPONSE_DATA_STR) : null);
@@ -108,22 +103,6 @@ public class Message {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return m;
-    }
-
-    public static Message getMessageFromJson(String jsonStr) {
-        Message m = null;
-        try {
-            JSONObject jsonObject = new JSONObject(jsonStr);
-            m = new Message();
-            m.setHandlerName(jsonObject.has(HANDLER_NAME_STR) ? jsonObject.getString(HANDLER_NAME_STR) : null);
-            m.setCallbackId(jsonObject.has(CALLBACK_ID_STR) ? jsonObject.getString(CALLBACK_ID_STR) : null);
-            m.setResponseData(jsonObject.has(RESPONSE_DATA_STR) ? jsonObject.getString(RESPONSE_DATA_STR) : null);
-            m.setResponseId(jsonObject.has(RESPONSE_ID_STR) ? jsonObject.getString(RESPONSE_ID_STR) : null);
-            m.setData(jsonObject.has(DATA_STR) ? jsonObject.getString(DATA_STR) : null);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return m;
+        return null;
     }
 }
