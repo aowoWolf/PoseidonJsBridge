@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>
+            js调用java
+        </title>
+    </head>
+    
+    <body>
+
+        <div id="logsuccess" style="color: green"></div>
+        <div id="logerror" style="color:red"></div>
+        <div id="logother" style="color:blue"></div>
+        <p>
+            <xmp id="show">
+            </xmp>
+        </p>
+        <p>
+            <xmp id="init">
+            </xmp>
+        </p>
+        <p>
+            <input type="button" id="enter" value="发消息给Native" onclick="testClick();"
+            />
+        </p>
+        <p>
+            <input type="button" id="enter2" value="显示html" onclick="testDiv();" />
+        </p>
+    </body>
+    <script>
+        function testDiv() {
+            document.getElementById("show").innerHTML = document.getElementsByTagName("html")[0].innerHTML;
+        }
+
+        function testClick() {
+            <!--var str1 = document.getElementById("text1").value;-->
+            <!--var str2 = document.getElementById("text2").value;-->
+
+
+        var temp = 0;
+        for (let i = 0; i < 10; i++) {
+            <!--temp = i;-->
+            window.WebViewJavascriptBridge.exec(
+                "customservice","test",["hello world", "####    "+i+"   ####"],
+                function (success){
+                    console.log("success");
+                    console.log(success);
+                    document.getElementById("logsuccess").innerHTML += success
+                },
+                function (error){
+                    console.log("error");
+                    console.log(error);
+                    document.getElementById("logerror").innerHTML += error
+                }
+            );
+        }
+        }
+
+        function connectWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                callback(WebViewJavascriptBridge)
+            } else {
+                document.addEventListener(
+                    'WebViewJavascriptBridgeReady'
+                    , function() {
+                        callback(WebViewJavascriptBridge)
+                    },
+                    false
+                );
+            }
+        }
+
+        connectWebViewJavascriptBridge(function(bridge) {
+            bridge.registerHandler(function(data, responseCallback) {
+                document.getElementById("logother").innerHTML += data;
+                if (responseCallback) {
+                    var responseData = ">>>>js new Date = "+ new Date;
+                    responseCallback(responseData);
+                }
+            });
+
+            bridge.registerHandler("onJavaCallJsEvent", function(data, responseCallback) {
+                document.getElementById("logother").innerHTML += data;
+                var responseData = ">>>>js new Date = "+ new Date;
+                responseCallback(responseData);
+            });
+
+        })
+    </script>
+
+</html>
+
