@@ -15,7 +15,6 @@ public class BridgeWebView extends WebView {
     private JavaToJsQueue javaToJsQueue;
     protected PoseidonInterface poseidon;
 
-    public static final String toLoadJs = "WebViewJavascriptBridge.js";
 
     public BridgeWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -52,7 +51,13 @@ public class BridgeWebView extends WebView {
         return new PoseidonInterfaceImpl(((Activity) getContext()));
     }
 
-    //注册自己的handler，可以理解成把用户自己继承PoseindonHandler的类与WebView绑定起来
+
+    /**
+     * 注册自己的handler，可以理解成把用户自己继承PoseindonHandler的类与WebView绑定起来
+     *
+     * @param handlerconfig 自定义的handler配置信息
+     * @return true:绑定成功
+     */
     public boolean registerHandler(HandlerConfig handlerconfig) {
         return serviceProxy.put(handlerconfig.getServiceMap());
     }

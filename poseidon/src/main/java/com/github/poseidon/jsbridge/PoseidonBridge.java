@@ -30,7 +30,6 @@ public class PoseidonBridge {
             return;
         }
         String responseId = m.getResponseId();
-        // 是否是response  ResponseFunction
         if (!TextUtils.isEmpty(responseId)) {
             ResponseFunction function = responseCallbacks.get(responseId);
             String responseData = m.getResponseData();

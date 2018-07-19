@@ -12,6 +12,7 @@ public class BridgeUtil {
     final static String CUSTOM_PROTOCOL_SCHEME = "yy://poseidon/";
 
     final static String CALLBACK_ID_FORMAT = "JAVA_CB_%s";
+    final static String toLoadJs = "WebViewJavascriptBridge.js";
     final static String JS_HANDLE_MESSAGE_FROM_JAVA = "javascript:WebViewJavascriptBridge._handleMessageFromNative('%s');";
 
     // 获取到传递信息的body值
@@ -24,10 +25,9 @@ public class BridgeUtil {
      * 这里只是加载lib包中assets中的 WebViewJavascriptBridge.js
      *
      * @param view webview
-     * @param path 路径
      */
-    static void webViewLoadLocalJs(WebView view, String path) {
-        String jsContent = assetFile2Str(view.getContext(), path);
+    static void webViewLoadLocalJs(WebView view) {
+        String jsContent = assetFile2Str(view.getContext(), toLoadJs);
         view.loadUrl("javascript:" + jsContent);
     }
 

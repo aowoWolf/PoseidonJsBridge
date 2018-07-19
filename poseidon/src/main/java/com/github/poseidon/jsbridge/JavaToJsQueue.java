@@ -33,13 +33,16 @@ public class JavaToJsQueue {
     }
 
     private void enequeueMessage(Message msg, boolean isFirst) {
-        if (isFirst) {
-            queue.addFirst(msg);
-        } else {
-            queue.add(msg);
-        }
-        if (!paused) {
-            flushQueue();
+        synchronized (this) {
+            if (isFirst) {
+                queue.addFirst(msg);
+            } else {
+                queue.add(msg);
+            }
+            //pause用于解决异步回调callback时，仍能正常向js发送信息
+            if (!paused) {
+                flushQueue();
+            }
         }
     }
 
