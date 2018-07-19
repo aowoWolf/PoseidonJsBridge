@@ -12,14 +12,12 @@ import java.util.Map;
 public class PoseidonBridge {
 
     private JavaToJsQueue queue;
-    private BridgeWebView webView;
     private HandlerManager handlerManager;
-    Map<String, ResponseFunction> responseCallbacks = new HashMap<String, ResponseFunction>();
+    Map<String, ResponseCallback> responseCallbacks = new HashMap<String, ResponseCallback>();
     private long uniqueId = 0;
 
     public PoseidonBridge(JavaToJsQueue queue, BridgeWebView webView) {
         this.handlerManager = new HandlerManager(webView);
-        this.webView = webView;
         this.queue = queue;
     }
 
@@ -31,9 +29,9 @@ public class PoseidonBridge {
         }
         String responseId = m.getResponseId();
         if (!TextUtils.isEmpty(responseId)) {
-            ResponseFunction function = responseCallbacks.get(responseId);
+            ResponseCallback responseCallback = responseCallbacks.get(responseId);
             String responseData = m.getResponseData();
-            function.receiveDataFromJs(responseData);
+            responseCallback.receiveDataFromJs(responseData);
             responseCallbacks.remove(responseId);
         } else {
             String callbackID = m.getCallbackId();
@@ -47,7 +45,7 @@ public class PoseidonBridge {
         }
     }
 
-    void callJshandler(String handlerName, String data, ResponseFunction responseCallback) {
+    void callJsHandler(String handlerName, String data, ResponseCallback responseCallback) {
         Message m = new Message();
         if (!TextUtils.isEmpty(data)) {
             m.setData(data);
@@ -64,7 +62,7 @@ public class PoseidonBridge {
     }
 
     //java向js发送消息，js发送回执消息的回调接口
-    public interface ResponseFunction {
+    public interface ResponseCallback {
         void receiveDataFromJs(String data);
     }
 }

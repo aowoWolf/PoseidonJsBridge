@@ -37,7 +37,7 @@ public abstract class PoseidonHandler {
         this.dispatchedJSEvent(handlerName, data, null);
     }
 
-    protected void dispatchedJSEvent(String handlerName, String data, PoseidonBridge.ResponseFunction responseCallback) {
+    protected void dispatchedJSEvent(String handlerName, String data, PoseidonBridge.ResponseCallback responseCallback) {
         webview.callJshandler(handlerName, data, responseCallback);
     }
 

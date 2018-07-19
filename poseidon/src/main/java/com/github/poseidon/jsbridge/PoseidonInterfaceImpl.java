@@ -16,6 +16,12 @@ public class PoseidonInterfaceImpl implements PoseidonInterface {
         this(activity, Executors.newCachedThreadPool());
     }
 
+
+    /**
+     * 如果需要使用自定义的线程池，重写{@link BridgeWebView#generatePoseidon()}方法
+     * @param activity
+     * @param threadPool
+     */
     public PoseidonInterfaceImpl(Activity activity, ExecutorService threadPool) {
         this.activity = activity;
         this.threadPool = threadPool;

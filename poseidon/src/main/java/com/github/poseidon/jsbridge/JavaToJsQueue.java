@@ -1,6 +1,5 @@
 package com.github.poseidon.jsbridge;
 
-import android.app.Activity;
 import android.text.TextUtils;
 
 import java.util.LinkedList;
@@ -12,10 +11,12 @@ public class JavaToJsQueue {
 
     private boolean paused;
     private BridgeWebView webView;
+    private PoseidonInterface poseidon;
     private LinkedList<Message> queue = new LinkedList<>();
 
     public JavaToJsQueue(BridgeWebView webView) {
         this.webView = webView;
+        poseidon = webView.poseidon;
     }
 
     public void addActionResult(ActionResult actionResult, String callbackID, boolean isFirst) {
@@ -47,7 +48,7 @@ public class JavaToJsQueue {
     }
 
     public void dispatchData2Js(final Message m) {
-        ((Activity) webView.getContext()).runOnUiThread(new Runnable() {
+        poseidon.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 String js = m.encodeAsJs();
@@ -57,7 +58,7 @@ public class JavaToJsQueue {
     }
 
     private void dispatchData2Js() {
-        ((Activity) webView.getContext()).runOnUiThread(new Runnable() {
+        poseidon.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 int size = queue.size();
