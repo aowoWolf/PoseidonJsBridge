@@ -3,8 +3,8 @@ package com.github.customhandler;
 import android.widget.Toast;
 
 import com.github.poseidon.jsbridge.CallBack;
-import com.github.poseidon.jsbridge.PoseidonBridge;
 import com.github.poseidon.jsbridge.PoseidonHandler;
+import com.github.poseidon.jsbridge.ResponseCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +34,7 @@ public class CustomHandler extends PoseidonHandler {
                         callback.error("Js call Java>>>_____" + i+str2 + "<br>", i < 10);
 //            callback.error("Js call Java>>>Java:this message come from customHandler_____" + time,true);
 //                        dispatchedJSEvent("onJavaCallJsEvent", "Java call Js>>>Java:CustomHandler_____" + i, new PoseidonBridge.ResponseCallback() {
-                        dispatchedJSEvent("onJavaCallJsEvent", new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 E ").format(new Date()) + "_______" + i+"<br>", new PoseidonBridge.ResponseCallback() {
+                        dispatchedJSEvent("onJavaCallJsEvent", new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 E ").format(new Date()) + "_______" + i+"<br>", new ResponseCallback() {
                             @Override
                             public void receiveDataFromJs(String data) {
                                 Toast.makeText(poseidon.getActivity(), data, Toast.LENGTH_SHORT).show();

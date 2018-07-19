@@ -61,8 +61,4 @@ public class PoseidonBridge {
         queue.dispatchData2Js(m);
     }
 
-    //java向js发送消息，js发送回执消息的回调接口
-    public interface ResponseCallback {
-        void receiveDataFromJs(String data);
-    }
 }

@@ -87,7 +87,7 @@ public class BridgeWebView extends WebView {
         return new BridgeWebViewClient(this);
     }
 
-    void callJshandler(String handlerName, String data, PoseidonBridge.ResponseCallback responseCallback) {
+    void callJshandler(String handlerName, String data, ResponseCallback responseCallback) {
         poseidonBridge.callJsHandler(handlerName, data, responseCallback);
     }
 
