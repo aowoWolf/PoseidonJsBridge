@@ -8,9 +8,6 @@ import com.github.poseidon.jsbridge.PoseidonHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * Created by ShuXin on 2018/7/16 16:49
  */
@@ -39,7 +36,7 @@ public class CustomHandler extends PoseidonHandler {
 //                                Toast.makeText(poseidon.getActivity(), data, Toast.LENGTH_SHORT).show();
 //                            }
 //                        });
-                        dispatchedJSEvent(new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 E ").format(new Date())+ "<br>");
+//                        dispatchedJSEvent(new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 E ").format(new Date())+"______"+i+"<br>");
                     }
                 }
             });

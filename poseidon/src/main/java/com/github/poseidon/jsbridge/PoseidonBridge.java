@@ -42,8 +42,9 @@ public class PoseidonBridge {
             String service = serviceAndAction[0];
             String action = serviceAndAction[1];
             String rawArgs = m.getData();
+            queue.setPaused(true);
             handlerManager.exec(service, action, rawArgs, callbackID);
-//            queue.flushQueue();
+            queue.setPaused(false);
         }
     }
 
@@ -60,8 +61,6 @@ public class PoseidonBridge {
         if (!TextUtils.isEmpty(handlerName)) {
             m.setHandlerName(handlerName);
         }
-//        queue.enequeueMessage(m, false);
-//        queue.flushQueue();
         queue.dispatchData2Js(m);
     }
 

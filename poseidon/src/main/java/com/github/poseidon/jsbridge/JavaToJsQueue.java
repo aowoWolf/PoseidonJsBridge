@@ -10,6 +10,7 @@ import java.util.LinkedList;
  */
 public class JavaToJsQueue {
 
+    private boolean paused;
     private BridgeWebView webView;
     private LinkedList<Message> queue = new LinkedList<>();
 
@@ -31,11 +32,14 @@ public class JavaToJsQueue {
         enequeueMessage(msg, isFirst);
     }
 
-    public void enequeueMessage(Message msg, boolean isFirst) {
+    private void enequeueMessage(Message msg, boolean isFirst) {
         if (isFirst) {
             queue.addFirst(msg);
         } else {
             queue.add(msg);
+        }
+        if (!paused) {
+            flushQueue();
         }
     }
 
@@ -68,4 +72,12 @@ public class JavaToJsQueue {
         }
     }
 
+    public void setPaused(boolean value) {
+        paused = value;
+        if (!value) {
+            synchronized (this) {
+                flushQueue();
+            }
+        }
+    }
 }
