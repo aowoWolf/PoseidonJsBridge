@@ -10,7 +10,7 @@ import android.webkit.WebView;
 @SuppressLint("SetJavaScriptEnabled")
 public class BridgeWebView extends WebView {
 
-    private ServiceProxy serviceProxy;
+    private ServiceHelper serviceHelper;
     private PoseidonBridge poseidonBridge;
     private JavaToJsQueue javaToJsQueue;
     protected PoseidonInterface poseidon;
@@ -41,7 +41,7 @@ public class BridgeWebView extends WebView {
         this.setWebViewClient(generateBridgeWebViewClient());
         //init HandlerManager
         poseidon = generatePoseidon();
-        serviceProxy = new ServiceProxy();
+        serviceHelper = new ServiceHelper();
         javaToJsQueue = new JavaToJsQueue(this);
         poseidonBridge = new PoseidonBridge(javaToJsQueue, this);
 
@@ -59,11 +59,11 @@ public class BridgeWebView extends WebView {
      * @return true:绑定成功
      */
     public boolean registerHandler(HandlerConfig handlerconfig) {
-        return serviceProxy.put(handlerconfig.getServiceMap());
+        return serviceHelper.put(handlerconfig);
     }
 
-    ServiceProxy getServiceProxy() {
-        return serviceProxy;
+    ServiceHelper getServiceHelper() {
+        return serviceHelper;
     }
 
     JavaToJsQueue getJavaToJsQueue() {

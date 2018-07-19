@@ -49,7 +49,7 @@ public class HandlerManager {
     private PoseidonHandler getHandler(String service) {
         PoseidonHandler ret = null;
         try {
-            Class<? extends PoseidonHandler> c = webView.getServiceProxy().getMap().get(service);
+            Class<? extends PoseidonHandler> c = webView.getServiceHelper().getMap().get(service);
             if (PoseidonHandler.class.isAssignableFrom(c)) {
                 ret = c.newInstance();
                 //poseidonHandler initialize
