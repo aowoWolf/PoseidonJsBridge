@@ -43,7 +43,7 @@ public class PoseidonBridge {
             String action = serviceAndAction[1];
             String rawArgs = m.getData();
             handlerManager.exec(service, action, rawArgs, callbackID);
-            queue.flushQueue();
+//            queue.flushQueue();
         }
     }
 
@@ -60,8 +60,9 @@ public class PoseidonBridge {
         if (!TextUtils.isEmpty(handlerName)) {
             m.setHandlerName(handlerName);
         }
-        queue.enequeueMessage(m, false);
-        queue.flushQueue();
+//        queue.enequeueMessage(m, false);
+//        queue.flushQueue();
+        queue.dispatchData2Js(m);
     }
 
     //java向js发送消息，js发送回执消息的回调接口

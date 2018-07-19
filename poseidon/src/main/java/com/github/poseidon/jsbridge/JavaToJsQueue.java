@@ -39,6 +39,16 @@ public class JavaToJsQueue {
         }
     }
 
+    public void dispatchData2Js(final Message m) {
+        ((Activity) webView.getContext()).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String js = m.encodeAsJs();
+                webView.loadUrl(js);
+            }
+        });
+    }
+
     private void dispatchData2Js() {
         ((Activity) webView.getContext()).runOnUiThread(new Runnable() {
             @Override
