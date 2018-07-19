@@ -53,7 +53,6 @@
             message.callbackId = callbackId;
         }
 
-//        var messageQueueString = JSON.stringify([message]);
         var messageQueueString = JSON.stringify(message);
         bizMessagingIframe.src = CUSTOM_PROTOCOL_SCHEME + encodeURIComponent(messageQueueString);
     }

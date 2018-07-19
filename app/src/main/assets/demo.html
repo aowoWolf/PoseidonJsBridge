@@ -41,7 +41,7 @@
         for (let i = 0; i < 10; i++) {
             <!--temp = i;-->
             window.WebViewJavascriptBridge.exec(
-                "customservice","test",["hello world", "####    "+i+"   ####"],
+                "customservice","test",["hello world", "####    "+new Date().getTime()+"   ####"],
                 function (success){
                     console.log("success");
                     console.log(success);

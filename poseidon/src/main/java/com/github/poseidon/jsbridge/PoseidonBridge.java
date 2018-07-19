@@ -24,26 +24,11 @@ public class PoseidonBridge {
     }
 
     void receiveDataFromJS(String fakeData) {
-
         String data = BridgeUtil.getDataFromReturnUrl(fakeData);
-
-//        List<Message> list = null;
-//        try {
-//            list = Message.toArrayList(data);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return;
-//        }
-//        if (list == null || list.size() == 0) {
-//            return;
-//        }
-
         Message m = Message.getMessageFromJson(data);
         if (m == null) {
             return;
         }
-//        for (int i = 0; i < list.size(); i++) {
-//            Message m = list.get(i);
         String responseId = m.getResponseId();
         // 是否是response  ResponseFunction
         if (!TextUtils.isEmpty(responseId)) {
@@ -60,8 +45,6 @@ public class PoseidonBridge {
             handlerManager.exec(service, action, rawArgs, callbackID);
             queue.flushQueue();
         }
-
-//        }
     }
 
     void callJshandler(String handlerName, String data, ResponseFunction responseCallback) {
