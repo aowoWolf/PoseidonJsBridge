@@ -1,4 +1,4 @@
-package com.github.customhandler;
+package com.github.customhandler.test;
 
 import android.widget.Toast;
 
