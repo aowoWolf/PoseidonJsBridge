@@ -185,6 +185,19 @@ game.pause = function(){
 };
 //游戏结束
 game.over = function(){
+    //**********
+    var system = new System();
+    system.vibrate(
+        1000,
+        function(success){
+            console.log(success);
+        },
+        function(error){
+            console.log(error);
+        }
+    );
+
+    //**********
 	var _this = this;
 	_this.myPlane.stop();
 	_this.myPlane.bang();

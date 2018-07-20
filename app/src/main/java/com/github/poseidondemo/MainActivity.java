@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import com.github.customhandler.handlerconfig.CustomConfig;
+import com.github.customhandler.handlerconfig.SystemConfig;
 import com.github.poseidon.jsbridge.BridgeWebView;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         //注册自己定义的handler，从而扩展标准浏览器的能力
         bridgeWebView.registerHandler(new CustomConfig());
+        bridgeWebView.registerHandler(new SystemConfig());
         bridgeWebView.loadUrl("file:///android_asset/index.html");
     }
 }
