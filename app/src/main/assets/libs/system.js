@@ -10,4 +10,8 @@ function System(){
     this.light = function(successCallback,errorCallback){
         window.WebViewJavascriptBridge.exec( this.SERVICE_NAME,"light",[],successCallback,errorCallback );
     }
+
+    this.deviceinfo = function(successCallback,errorCallback){
+        window.WebViewJavascriptBridge.exec( this.SERVICE_NAME,"deviceinfo",[],successCallback,errorCallback );
+    }
 }
