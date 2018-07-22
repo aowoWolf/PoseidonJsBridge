@@ -73,7 +73,7 @@ public class SystemHandler extends PoseidonHandler {
                 parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
                 camera.setParameters(parameters);
                 camera.startPreview();
-                callback.success("close camera error", false);
+                callback.success("open camera success", false);
             }
             return true;
         }
