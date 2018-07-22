@@ -14,7 +14,29 @@
 <div id="logerror" style="color:red"></div>
 <div id="logother" style="color:blue"></div>
 <p>
-    <input type="button" id="enter" value="发消息给Native" onclick="testClick();" />
+    Js调用Java，但是只需要Java层发送一条回调信息<br>
+    <input type="text"  id="jstojava" value="js-->java:helloworld"/><br>
+    <form>
+    <input type="button"  value="Js调用Java" onclick="jsToJava();" />
+        <input type="checkbox" id="jstojava_check">是否返回成功信息？
+    </form>
+</p> <br> <br>
+<p>
+    Js调用Java，Java层可以发送任意条回调信息<br>
+    <input type="text"  id="multijstojava" value="js-->java:multiple"/><br>
+    <input type="text"  id="mulit_count" value="20"/><br>
+    <form>
+    <input type="button"  value="multiple_Js调用Java" onclick="multipleJstoJava();" />
+        <input type="checkbox" id="mulit_check">是否返回成功信息？
+    </form>
+</p> <br> <br>
+<p>
+    Java调用Js,handlerName也可为空<br>
+    <input type="text"  id="handlerName" value="handlerName"/><br>
+    <form>
+    <input type="button"  value="注册handler" onclick="registerHandler();" />
+        <input type="checkbox" id="check1">是否需要回调？(是：将会toast一个"helloworld",handlerName没有将不会toast)
+    </form>
 </p>
 </body>
 </html>
