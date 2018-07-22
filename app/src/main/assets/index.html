@@ -5,7 +5,7 @@
             js调用java
         </title>
     </head>
-    
+
     <body>
 
         <div id="logsuccess" style="color: green"></div>
@@ -24,23 +24,14 @@
             />
         </p>
         <p>
-            <input type="button" id="enter2" value="显示html" onclick="testDiv();" />
+            <a href="./html/system.html">system test</a>
         </p>
         <p>
             <a href="./html/game.html">start game</a>
         </p>
     </body>
     <script>
-        function testDiv() {
-            document.getElementById("show").innerHTML = document.getElementsByTagName("html")[0].innerHTML;
-        }
-
         function testClick() {
-            <!--var str1 = document.getElementById("text1").value;-->
-            <!--var str2 = document.getElementById("text2").value;-->
-
-
-        <!--for (let i = 0; i < 10; i++) {-->
             window.WebViewJavascriptBridge.exec(
                 "customservice","test",["hello world", "####    "+new Date().getTime()+"   ####"],
                 function (success){
@@ -54,7 +45,6 @@
                     document.getElementById("logerror").innerHTML += error
                 }
             );
-        <!--}-->
         }
 
         function connectWebViewJavascriptBridge(callback) {
