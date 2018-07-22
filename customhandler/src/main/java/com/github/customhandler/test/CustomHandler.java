@@ -1,7 +1,6 @@
 package com.github.customhandler.test;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.github.poseidon.jsbridge.CallBack;
@@ -29,7 +28,6 @@ public class CustomHandler extends PoseidonHandler {
     public boolean execute(String action, JSONArray args, final CallBack callback) throws JSONException {
         if (ACTION_JSTOJAVA.equals(action)) {
             String msg = args.getString(0);
-            Log.d(TAG, "execute: jstojava"+msg);
             Toast.makeText(poseidon.getActivity(), msg, Toast.LENGTH_SHORT).show();
             boolean isSuccess = args.getBoolean(1);
             if (isSuccess) {
@@ -40,7 +38,6 @@ public class CustomHandler extends PoseidonHandler {
             return true;
         } else if (ACTION_MULTIJSTOJAVA.equals(action)) {
             String msg = args.getString(0);
-            Log.d(TAG, "execute:multi  jstojava"+msg);
             Toast.makeText(poseidon.getActivity(), msg, Toast.LENGTH_SHORT).show();
             int count = args.getInt(1);
             boolean isSuccess = args.getBoolean(2);
@@ -53,8 +50,7 @@ public class CustomHandler extends PoseidonHandler {
             }
             return true;
         } else if (ACTION_JAVATOJS.equals(action)) {
-            String handlerName = args.getString(1);
-            Log.d(TAG, "execute:java to js"+handlerName);
+            String handlerName = args.getString(0);
             if (TextUtils.isEmpty(handlerName)) {
                 dispatchedJSEvent("java call js______" + new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 E ").format(new Date()));
             } else {

@@ -8,7 +8,7 @@
                 document.getElementById("logother").innerHTML += data+"<br>";
         }
 
-        var poseidonBridge ;
+        var poseidonBridge;
         function connectWebViewJavascriptBridge(callback) {
             if (window.WebViewJavascriptBridge) {
                 callback(WebViewJavascriptBridge)
@@ -58,7 +58,7 @@
 
         function multipleJstoJava() {
             var msg = document.getElementById("multijstojava").value;
-            var conut = document.getElementById("mulit_count").value;
+            var count = document.getElementById("mulit_count").value;
             var isSuccess = document.getElementById("mulit_check").checked;
             var customservice = new Custom();
             customservice.multiplejstojava(
@@ -79,22 +79,25 @@
             var needCallback = document.getElementById("check1").checked;
             var needHandler = (handlerName == "" || handlerName == undefined || handlerName == null) ? false: true;
             if(needCallback){
-                bridge.registerHandler(handlerName, function(data, responseCallback) {
+                poseidonBridge.registerHandler(handlerName, function(data, responseCallback) {
                     appendOtherLog("needCallback"+data)
                     responseCallback("hello world");
                 });
             }else{
                 if(!needHandler){
-                    bridge.registerHandler(function(data) {
+                    poseidonBridge.registerHandler(function(data) {
                         appendOtherLog("not needHandlerName"+data)
                     });
                 }else{
-                    bridge.registerHandler(handlerName, function(data) {
+                    poseidonBridge.registerHandler(handlerName, function(data) {
                         appendOtherLog("need HandlerName but callback"+data)
                     });
                 }
             }
+        }
 
+        function javacalljs() {
+            var handlerName = document.getElementById("handlerName").value;
             var customservice = new Custom();
             customservice.javatojs(
                 handlerName,
