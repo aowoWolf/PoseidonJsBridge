@@ -5,6 +5,8 @@ import android.util.Log;
 
 import org.json.JSONException;
 
+import java.util.HashMap;
+
 /**
  * Created by ShuXin on 2018/7/12 18:00
  */
@@ -14,9 +16,11 @@ public class HandlerManager {
 
     private static final int SLOW_EXEC_WARNING_THRESHOLD = Debug.isDebuggerConnected() ? 60 : 16;
     private BridgeWebView webView;
+    private HashMap<String, PoseidonHandler> handlerMap;
 
     public HandlerManager(BridgeWebView webView) {
         this.webView = webView;
+        handlerMap = new HashMap<>();
     }
 
     //bridgewebview.fluseMessage(callbackid exit)
@@ -35,7 +39,7 @@ public class HandlerManager {
 
             if (!wasValidAction) {
                 ActionResult cr = new ActionResult(ActionResult.Status.INVALID_ACTION);
-                webView.insertHeadActionResutlt(cr,callbackID);
+                webView.insertHeadActionResutlt(cr, callbackID);
             }
         } catch (JSONException e) {
             ActionResult cr = new ActionResult(ActionResult.Status.JSON_EXCEPTION);
@@ -48,16 +52,21 @@ public class HandlerManager {
 
     private PoseidonHandler getHandler(String service) {
         PoseidonHandler ret = null;
-        try {
-            Class<? extends PoseidonHandler> c = webView.getServiceHelper().getMap().get(service);
-            if (PoseidonHandler.class.isAssignableFrom(c)) {
-                ret = c.newInstance();
-                //poseidonHandler initialize
-                ret.privateInitialize(webView, webView.poseidon);
+        if (handlerMap.containsKey(service)) {
+            ret = handlerMap.get(service);
+        } else {
+            try {
+                Class<? extends PoseidonHandler> c = webView.getServiceHelper().getMap().get(service);
+                if (PoseidonHandler.class.isAssignableFrom(c)) {
+                    ret = c.newInstance();
+                    handlerMap.put(service,ret);
+                    //poseidonHandler initialize
+                    ret.privateInitialize(webView, webView.poseidon);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e(TAG, "Error adding handler " + service + ".");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e(TAG, "Error adding handler " + service + ".");
         }
         return ret;
     }
