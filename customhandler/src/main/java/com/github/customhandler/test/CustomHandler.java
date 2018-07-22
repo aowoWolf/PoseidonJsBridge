@@ -1,5 +1,7 @@
 package com.github.customhandler.test;
 
+import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.github.poseidon.jsbridge.CallBack;
@@ -19,47 +21,50 @@ public class CustomHandler extends PoseidonHandler {
 
     public static final String TAG = CustomHandler.class.getSimpleName();
 
-    private static String ACTION_TEST = "test";
     private static String ACTION_JSTOJAVA = "jstojava";
     private static String ACTION_MULTIJSTOJAVA = "multiplejstojava";
     private static String ACTION_JAVATOJS = "javatojs";
 
     @Override
     public boolean execute(String action, JSONArray args, final CallBack callback) throws JSONException {
-        if (ACTION_TEST.equals(action)) {
-            String str1 = args.getString(0);
-            final String str2 = args.getString(1);
-            Toast.makeText(poseidon.getActivity(), str1 + "_______" + str2, Toast.LENGTH_SHORT).show();
-            long time = System.currentTimeMillis();
-            poseidon.getThreadPool().execute(new Runnable() {
-                public void run() {
-                    for (int i = 0; i < 20; i++) {
-                        callback.error("Js call Java>>>_____" + i + str2 + "<br>", i < 10);
-//            callback.error("Js call Java>>>Java:this message come from customHandler_____" + time,true);
-//                        dispatchedJSEvent("onJavaCallJsEvent", "Java call Js>>>Java:CustomHandler_____" + i, new PoseidonBridge.ResponseCallback() {
-                        dispatchedJSEvent("onJavaCallJsEvent", new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 E ").format(new Date()) + "_______" + i + "<br>", new ResponseCallback() {
-                            @Override
-                            public void receiveDataFromJs(String data) {
-                                Toast.makeText(poseidon.getActivity(), data, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        dispatchedJSEvent(new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 E ").format(new Date()) + "______" + i + "<br>");
-                    }
-                }
-            });
-            return true;
-        }
-
         if (ACTION_JSTOJAVA.equals(action)) {
             String msg = args.getString(0);
-            callback.success( false);
+            Log.d(TAG, "execute: jstojava"+msg);
+            Toast.makeText(poseidon.getActivity(), msg, Toast.LENGTH_SHORT).show();
+            boolean isSuccess = args.getBoolean(1);
+            if (isSuccess) {
+                callback.success("success msg: js call java ", false);
+            } else {
+                callback.error("error msg: js call java ", false);
+            }
             return true;
         } else if (ACTION_MULTIJSTOJAVA.equals(action)) {
             String msg = args.getString(0);
+            Log.d(TAG, "execute:multi  jstojava"+msg);
+            Toast.makeText(poseidon.getActivity(), msg, Toast.LENGTH_SHORT).show();
             int count = args.getInt(1);
+            boolean isSuccess = args.getBoolean(2);
+            for (int i = 0; i < count; i++) {
+                if (isSuccess) {
+                    callback.success("success msg: multiple js call java " + "_______" + i, i < count - 1);
+                } else {
+                    callback.error("error msg: multiple js call java " + "_______" + i, i < count - 1);
+                }
+            }
             return true;
         } else if (ACTION_JAVATOJS.equals(action)) {
             String handlerName = args.getString(1);
+            Log.d(TAG, "execute:java to js"+handlerName);
+            if (TextUtils.isEmpty(handlerName)) {
+                dispatchedJSEvent("java call js______" + new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 E ").format(new Date()));
+            } else {
+                dispatchedJSEvent(handlerName, new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 E ").format(new Date()), new ResponseCallback() {
+                    @Override
+                    public void receiveDataFromJs(String data) {
+                        Toast.makeText(poseidon.getActivity(), data, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
             return true;
         }
 

@@ -61,7 +61,7 @@
             var conut = document.getElementById("mulit_count").value;
             var isSuccess = document.getElementById("mulit_check").checked;
             var customservice = new Custom();
-            customservice.multipleJstoJava(
+            customservice.multiplejstojava(
                 msg,
                 count,
                 isSuccess,
