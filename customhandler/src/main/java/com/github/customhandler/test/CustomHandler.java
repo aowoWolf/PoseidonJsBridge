@@ -25,7 +25,6 @@ public class CustomHandler extends PoseidonHandler {
         if (ACTION_TEST.equals(action)) {
             String str1 = args.getString(0);
             final String str2 = args.getString(1);
-//            String str3 = args.getString(4);
             Toast.makeText(poseidon.getActivity(), str1 + "_______" + str2, Toast.LENGTH_SHORT).show();
             long time = System.currentTimeMillis();
             poseidon.getThreadPool().execute(new Runnable() {

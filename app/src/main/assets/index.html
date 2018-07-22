@@ -12,72 +12,15 @@
         <div id="logerror" style="color:red"></div>
         <div id="logother" style="color:blue"></div>
         <p>
-            <xmp id="show">
-            </xmp>
+            <a href="./html/customtest.html">customtest</a>
         </p>
         <p>
-            <xmp id="init">
-            </xmp>
-        </p>
-        <p>
-            <input type="button" id="enter" value="发消息给Native" onclick="testClick();"
-            />
-        </p>
-        <p>
-            <a href="./html/system.html">system test</a>
+            <a href="./html/systemtest.html">system test</a>
         </p>
         <p>
             <a href="./html/game.html">start game</a>
         </p>
     </body>
-    <script>
-        function testClick() {
-            window.WebViewJavascriptBridge.exec(
-                "customservice","test",["hello world", "####    "+new Date().getTime()+"   ####"],
-                function (success){
-                    console.log("success");
-                    console.log(success);
-                    document.getElementById("logsuccess").innerHTML += success
-                },
-                function (error){
-                    console.log("error");
-                    console.log(error);
-                    document.getElementById("logerror").innerHTML += error
-                }
-            );
-        }
-
-        function connectWebViewJavascriptBridge(callback) {
-            if (window.WebViewJavascriptBridge) {
-                callback(WebViewJavascriptBridge)
-            } else {
-                document.addEventListener(
-                    'WebViewJavascriptBridgeReady'
-                    , function() {
-                        callback(WebViewJavascriptBridge)
-                    },
-                    false
-                );
-            }
-        }
-
-        connectWebViewJavascriptBridge(function(bridge) {
-            bridge.registerHandler(function(data, responseCallback) {
-                document.getElementById("logother").innerHTML += data;
-                if (responseCallback) {
-                    var responseData = ">>>>js new Date = "+ new Date;
-                    responseCallback(responseData);
-                }
-            });
-
-            bridge.registerHandler("onJavaCallJsEvent", function(data, responseCallback) {
-                document.getElementById("logother").innerHTML += data;
-                var responseData = ">>>>js new Date = "+ new Date;
-                responseCallback(responseData);
-            });
-
-        })
-    </script>
 
 </html>
 
