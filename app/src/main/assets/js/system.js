@@ -1,11 +1,14 @@
         function appendSuccessLog(data){
                 document.getElementById("logsuccess").innerHTML += data+"<br>";
+                document.getElementById("logsuccess").style.display = "";
         }
         function appendErrorLog(data){
                 document.getElementById("logerror").innerHTML += data+"<br>";
+                document.getElementById("logerror").style.display = "";
         }
         function appendOtherLog(data){
                 document.getElementById("logother").innerHTML += data+"<br>";
+                document.getElementById("logother").style.display = "";
         }
         function vibrate() {
             var delay = document.getElementById("system_delay").value;

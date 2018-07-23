@@ -4,35 +4,79 @@
     <meta charset="UTF-8"/>
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>sy</title>
+    <title>custom test</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <script src="../libs/custom.js"></script>
     <script src="../js/custom.js"></script>
-    <style></style>
+    <style>
+        table{
+                 width:100%;
+                 align:center;
+                 border-collapse:separate;
+                 border-spacing:0px 15px;
+        }
+    </style>
 </head>
 <body>
-    <div id="logsuccess" style="color: green"></div>
-    <div id="logerror" style="color:red"></div>
-    <div id="logother" style="color:blue"></div>
-    <div class="box">
-        <p>Js调用Java，但是只需要Java层发送一条回调信息</p>
-        <input class="text-box" type="text"  id="jstojava" value="js-->java:helloworld"/><br>
-        <button onclick="jsToJava();">Js调用Java</button>
-        <input type="checkbox" id="jstojava_check">是否返回成功信息？
+<div class="container">
+
+    <div class="page-header">
+        <h1>
+            <center>Custom Test</center>
+        </h1>
     </div>
-    <div class="box">
-        <p>Js调用Java，Java层可以发送任意条回调信息</p>
-        <input class="text-box" type="text"  id="multijstojava" value="js-->java:multiple"/><br>
-        <input class="text-box" type="text"  id="mulit_count" value="20"/><br>
-        <button onclick="multipleJstoJava();" >multiple_Js调用Java</button>
-        <input type="checkbox" id="mulit_check">是否返回成功信息？
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Custom</h3>
+        </div>
+        <div class="panel-body">
+            <button onclick="cleanLog()" class="btn btn-danger btn-group-lg">clean log</button>
+            <script>
+                window.onload=function(){
+                    document.getElementById("logsuccess").style.display = "none";
+                    document.getElementById("logerror").style.display = "none";
+                    document.getElementById("logother").style.display = "none";
+                }
+
+                function cleanLog(){
+                    document.getElementById("logsuccess").innerHTML = "";
+                    document.getElementById("logerror").innerHTML = "";
+                    document.getElementById("logother").innerHTML = "";
+                    document.getElementById("logsuccess").style.display = "none";
+                    document.getElementById("logerror").style.display = "none";
+                    document.getElementById("logother").style.display = "none";
+                }
+            </script>
+            <p class="text-left">Test Result</p>
+            <div class="alert alert-success" id="logsuccess" style="color: green"></div>
+            <div class="alert alert-danger" id="logerror" style="color:red"></div>
+            <div class="alert alert-info" id="logother" style="color:blue"></div>
+
+            <p>Js调用Java，但是只需要Java层发送一条回调信息</p>
+            <input type="text"  id="jstojava" value="js-->java:helloworld"/><br>
+            <button class="btn btn-info btn-group-lg" onclick="jsToJava();">Js调用Java</button>
+            <input type="checkbox" id="jstojava_check">是否返回成功信息？
+            <br><br> <br><br>
+            <p>Js调用Java，Java层可以发送任意条回调信息</p>
+            <input type="text"  id="multijstojava" value="js-->java:multiple"/><br>
+            <input type="text"  id="mulit_count" value="20"/><br>
+            <button class="btn btn-info btn-group-lg" onclick="multipleJstoJava();" >multiple_Js调用Java</button>
+            <input type="checkbox" id="mulit_check">是否返回成功信息？
+            <br><br> <br><br>
+            <p>Java调用Js,handlerName也可为空</p>
+            <input type="text"  id="handlerName" value="handlerName"/><br>
+            <button class="btn btn-info btn-group-lg" onclick="registerHandler();" >注册handler</button>
+            <input type="checkbox" id="check1">是否需要回调？(是：将会toast一个"helloworld",handlerName没有将不会toast)
+            <button  class="btn btn-info btn-group-lg" onclick="javacalljs();">java调用js</button>
+
+        </div>
     </div>
-    <div class="box">
-        <p>Java调用Js,handlerName也可为空</p>
-        <input class="text-box" type="text"  id="handlerName" value="handlerName"/><br>
-        <button onclick="registerHandler();" >注册handler</button>
-        <input type="checkbox" id="check1">是否需要回调？(是：将会toast一个"helloworld",handlerName没有将不会toast)
-        <button onclick="javacalljs();">java调用js</button>
-    </div>
+
+</div>
+
+
+
+
 </body>
 </html>

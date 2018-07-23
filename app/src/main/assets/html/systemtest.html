@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>sy</title>
+    <title>system test</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <script src="../libs/system.js"></script>
     <script src="../js/system.js"></script>
@@ -33,16 +33,25 @@
         <div class="panel-body">
             <button onclick="cleanLog()" class="btn btn-danger btn-group-lg">clean log</button>
             <script>
+                window.onload=function(){
+                    document.getElementById("logsuccess").style.display = "none";
+                    document.getElementById("logerror").style.display = "none";
+                    document.getElementById("logother").style.display = "none";
+                }
+
                 function cleanLog(){
                     document.getElementById("logsuccess").innerHTML = "";
                     document.getElementById("logerror").innerHTML = "";
                     document.getElementById("logother").innerHTML = "";
+                    document.getElementById("logsuccess").style.display = "none";
+                    document.getElementById("logerror").style.display = "none";
+                    document.getElementById("logother").style.display = "none";
                 }
             </script>
             <p class="text-left">Test Result</p>
-            <div id="logsuccess" style="color: green"></div>
-            <div id="logerror" style="color:red"></div>
-            <div id="logother" style="color:blue"></div>
+            <div class="alert alert-success" id="logsuccess" style="color: green"></div>
+            <div class="alert alert-danger" id="logerror" style="color:red"></div>
+            <div class="alert alert-info" id="logother" style="color:blue"></div>
 
             <p><strong>vibrate delay:</strong></p>
             <input  type="number" id="system_delay" value="1000"/>
