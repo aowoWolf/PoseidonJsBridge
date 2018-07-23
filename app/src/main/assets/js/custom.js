@@ -83,17 +83,17 @@
             var needHandler = (handlerName == "" || handlerName == undefined || handlerName == null) ? false: true;
             if(needCallback){
                 poseidonBridge.registerHandler(handlerName, function(data, responseCallback) {
-                    appendOtherLog("needCallback"+data)
+                    appendOtherLog("需要HandlerName和回调:___"+data)
                     responseCallback("hello world");
                 });
             }else{
                 if(!needHandler){
                     poseidonBridge.registerHandler(function(data) {
-                        appendOtherLog("not needHandlerName"+data)
+                        appendOtherLog("不需要HandlerName，也不需要回调:___"+data)
                     });
                 }else{
                     poseidonBridge.registerHandler(handlerName, function(data) {
-                        appendOtherLog("need HandlerName but callback"+data)
+                        appendOtherLog("需要HandlerName，但不需要回调:___"+data)
                     });
                 }
             }

@@ -15,6 +15,7 @@
                  border-collapse:separate;
                  border-spacing:0px 15px;
         }
+
     </style>
 </head>
 <body>
@@ -28,7 +29,7 @@
 
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h3 class="panel-title">Custom</h3>
+            <h3 class="panel-title">Log</h3>
         </div>
         <div class="panel-body">
             <button onclick="cleanLog()" class="btn btn-danger btn-group-lg">clean log</button>
@@ -47,36 +48,60 @@
                     document.getElementById("logerror").style.display = "none";
                     document.getElementById("logother").style.display = "none";
                 }
+
             </script>
             <p class="text-left">Test Result</p>
             <div class="alert alert-success" id="logsuccess" style="color: green"></div>
             <div class="alert alert-danger" id="logerror" style="color:red"></div>
             <div class="alert alert-info" id="logother" style="color:blue"></div>
 
-            <p>Js调用Java，但是只需要Java层发送一条回调信息</p>
-            <input type="text"  id="jstojava" value="js-->java:helloworld"/><br>
-            <button class="btn btn-info btn-group-lg" onclick="jsToJava();">Js调用Java</button>
-            <input type="checkbox" id="jstojava_check">是否返回成功信息？
-            <br><br> <br><br>
-            <p>Js调用Java，Java层可以发送任意条回调信息</p>
-            <input type="text"  id="multijstojava" value="js-->java:multiple"/><br>
-            <input type="text"  id="mulit_count" value="20"/><br>
-            <button class="btn btn-info btn-group-lg" onclick="multipleJstoJava();" >multiple_Js调用Java</button>
-            <input type="checkbox" id="mulit_check">是否返回成功信息？
-            <br><br> <br><br>
-            <p>Java调用Js,handlerName也可为空</p>
-            <input type="text"  id="handlerName" value="handlerName"/><br>
-            <button class="btn btn-info btn-group-lg" onclick="registerHandler();" >注册handler</button>
-            <input type="checkbox" id="check1">是否需要回调？(是：将会toast一个"helloworld",handlerName没有将不会toast)
-            <button  class="btn btn-info btn-group-lg" onclick="javacalljs();">java调用js</button>
+        </div>
+    </div>
 
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Js call Java</h3>
+        </div>
+        <div class="panel-body">
+            <p><strong>Js调用Java，但是只需要Java层发送一条回调信息</strong></p>
+            <input type="text" id="jstojava" value="js-->java:helloworld"/><br>
+            <button class="btn btn-info btn-group-lg" onclick="jsToJava();">call</button>
+            <input type="checkbox" id="jstojava_check">是否返回成功信息？
+        </div>
+    </div>
+
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title">Js call Java (multiple)</h3>
+        </div>
+        <div class="panel-body">
+            <p><Strong>Js调用Java，Java层可以发送任意条回调信息</Strong></p>
+            <input type="text" id="multijstojava" value="js-->java:multiple"/><br>
+            <input type="text" id="mulit_count" value="20"/><br>
+            <button class="btn btn-info btn-group-xs" onclick="multipleJstoJava();">call</button>
+            <input type="checkbox" id="mulit_check">是否返回成功信息？
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Java call js</h3>
+        </div>
+        <div class="panel-body">
+            <p><strong>Java调用Js,handlerName也可为空</strong></p>
+            <ul>
+                <li>需要HandlerName和回调</li>
+                <li>需要HandlerName，但不需要回调</li>
+                <li>不需要HandlerName，也不需要回调</li>
+            </ul>
+            <input type="text" id="handlerName" value="handlerName"/><br>
+            <button class="btn btn-info " onclick="registerHandler();">注册handler
+            </button>
+            <input type="checkbox" id="check1">是否需要回调？(是：将会toast一个"helloworld",handlerName没有将不会toast)<br>
+            <button class="btn btn-info btn-group-sm" onclick="javacalljs();">call</button>
         </div>
     </div>
 
 </div>
-
-
-
-
 </body>
 </html>
