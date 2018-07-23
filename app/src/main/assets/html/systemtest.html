@@ -5,28 +5,65 @@
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>sy</title>
-    <link rel="stylesheet" href="../css/view.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <script src="../libs/system.js"></script>
     <script src="../js/system.js"></script>
+    <style>
+        table{
+                 width:100%;
+                 align:center;
+                 border-collapse:separate;
+                 border-spacing:0px 15px;
+        }
+    </style>
 </head>
 <body>
-<div id="logsuccess" style="color: green"></div>
-<div id="logerror" style="color:red"></div>
-<div id="logother" style="color:blue"></div>
-<p>
-    <input type="text" id="system_delay" value="1000"/>
-</p>
-<p>
-    <input type="button" id="system_vibrate" value="振动" onclick="vibrate();"
-    />
-</p>
-<p>
-    <input type="button" id="system_light" value="toggle闪光灯" onclick="light();"
-    />
-</p>
-<p>
-    <input type="button" id="system_deviceinfo" value="设备信息" onclick="deviceinfo();"
-    />
-</p>
+<div class="container">
+
+    <div class="page-header">
+        <h1>
+            <center>System Test</center>
+        </h1>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">System</h3>
+        </div>
+        <div class="panel-body">
+            <button onclick="cleanLog()" class="btn btn-danger btn-group-lg">clean log</button>
+            <script>
+                function cleanLog(){
+                    document.getElementById("logsuccess").innerHTML = "";
+                    document.getElementById("logerror").innerHTML = "";
+                    document.getElementById("logother").innerHTML = "";
+                }
+            </script>
+            <p class="text-left">Test Result</p>
+            <div id="logsuccess" style="color: green"></div>
+            <div id="logerror" style="color:red"></div>
+            <div id="logother" style="color:blue"></div>
+
+            <p><strong>vibrate delay:</strong></p>
+            <input  type="number" id="system_delay" value="1000"/>
+            <table>
+                <tr>
+                    <td>
+                        <input class="btn btn-primary btn-group-lg" type="button" id="system_vibrate" value="振动" onclick="vibrate();"/>
+                    </td>
+                    <td>
+                        <input class="btn btn-warning btn-group-lg" type="button" id="system_light" value="toggle闪光灯" onclick="light();"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="btn btn-info btn-group-lg" type="button" id="system_deviceinfo" value="设备信息" onclick="deviceinfo();"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

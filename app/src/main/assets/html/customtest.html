@@ -5,39 +5,34 @@
     <meta name="viewport"
           content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>sy</title>
-    <link rel="stylesheet" href="../css/view.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <script src="../libs/custom.js"></script>
     <script src="../js/custom.js"></script>
+    <style></style>
 </head>
 <body>
-<div id="logsuccess" style="color: green"></div>
-<div id="logerror" style="color:red"></div>
-<div id="logother" style="color:blue"></div>
-<p>
-    Js调用Java，但是只需要Java层发送一条回调信息<br>
-    <input type="text"  id="jstojava" value="js-->java:helloworld"/><br>
-    <form>
-    <input type="button"  value="Js调用Java" onclick="jsToJava();" />
+    <div id="logsuccess" style="color: green"></div>
+    <div id="logerror" style="color:red"></div>
+    <div id="logother" style="color:blue"></div>
+    <div class="box">
+        <p>Js调用Java，但是只需要Java层发送一条回调信息</p>
+        <input class="text-box" type="text"  id="jstojava" value="js-->java:helloworld"/><br>
+        <button onclick="jsToJava();">Js调用Java</button>
         <input type="checkbox" id="jstojava_check">是否返回成功信息？
-    </form>
-</p> <br> <br>
-<p>
-    Js调用Java，Java层可以发送任意条回调信息<br>
-    <input type="text"  id="multijstojava" value="js-->java:multiple"/><br>
-    <input type="text"  id="mulit_count" value="20"/><br>
-    <form>
-    <input type="button"  value="multiple_Js调用Java" onclick="multipleJstoJava();" />
+    </div>
+    <div class="box">
+        <p>Js调用Java，Java层可以发送任意条回调信息</p>
+        <input class="text-box" type="text"  id="multijstojava" value="js-->java:multiple"/><br>
+        <input class="text-box" type="text"  id="mulit_count" value="20"/><br>
+        <button onclick="multipleJstoJava();" >multiple_Js调用Java</button>
         <input type="checkbox" id="mulit_check">是否返回成功信息？
-    </form>
-</p> <br> <br>
-<p>
-    Java调用Js,handlerName也可为空<br>
-    <input type="text"  id="handlerName" value="handlerName"/><br>
-    <form>
-    <input type="button"  value="注册handler" onclick="registerHandler();" />
+    </div>
+    <div class="box">
+        <p>Java调用Js,handlerName也可为空</p>
+        <input class="text-box" type="text"  id="handlerName" value="handlerName"/><br>
+        <button onclick="registerHandler();" >注册handler</button>
         <input type="checkbox" id="check1">是否需要回调？(是：将会toast一个"helloworld",handlerName没有将不会toast)
-    </form>
-<input type="button"  value="java调用js" onclick="javacalljs();" />
-</p>
+        <button onclick="javacalljs();">java调用js</button>
+    </div>
 </body>
 </html>
