@@ -1,6 +1,6 @@
 # Poseidon
 
-[中文文档](https://www.baidu.com)
+The English document is still under construction.Please read the [中文文档](https://github.com/aowoWolf/PoseidonJsBridge)
 
 ![image](https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/poseidon_Logo.jpg?raw=true)
 ![image](https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/logo_name.png?raw=true)
@@ -15,7 +15,7 @@ Poseidon 是一座连接 Java 和 JavaScript 的桥梁。它为两者之间的�
 ## 演示
 - 演示设备：魅蓝note2
 - Android 版本：5.1
-  因为只是屏幕截图，所以只能看到设备的信息，看不到震动和闪光灯的效果。当然你也可以下载这个[Demo.apk](https://www.baidu.com).
+  因为只是屏幕截图，所以只能看到设备的信息，看不到震动和闪光灯的效果。当然你也可以下载这个[Demo.apk](https://github.com/aowoWolf/PoseidonJsBridge/raw/160b707e88400baea1eaedfe16c443e92e2f0e82/PoseidonDemo.apk).
 
   ![image](https://github.com/aowoWolf/PoseidonJsBridge/blob/1ae300163ea63fa2ad9d0d18a6538d846899e12c/readmeRes/poseidon_systemtest.gif?raw=true)
   以下图片主要演示 JavaScript 调用 Java 的时候，Java 层可以返回**单条**信息也可以返回**若干条**消息，只要你想。
@@ -200,9 +200,4 @@ Java只需要调用`dispatchedJSEvent(String data)`便可。
  - 返回到js的消息队里里的信息，统一放到js端处理
 
 ## 彩蛋
-demo还有个仿微信打飞机的小游戏。这不是重点，重点是我添加了一个坠机会振动的功能。其实也很简单，就是调用 SystemHandler 的振动 action。[点我下载]()
-
-------
-
-备用Logo
-![image](https://github.com/aowoWolf/PoseidonJsBridge/blob/1ae300163ea63fa2ad9d0d18a6538d846899e12c/readmeRes/153250192152689.png?raw=true)
+demo还有个仿微信打飞机的小游戏。这不是重点，重点是我添加了一个坠机会振动的功能。其实也很简单，就是调用 SystemHandler 的振动 action。[点我下载](https://github.com/aowoWolf/PoseidonJsBridge/raw/160b707e88400baea1eaedfe16c443e92e2f0e82/PoseidonDemo.apk)
