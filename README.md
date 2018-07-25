@@ -1,9 +1,12 @@
 # Poseidon
 
-[English document](https://github.com/aowoWolf/PoseidonJsBridge/blob/master/README-en.md)
+[English document](https://github.com/aowoWolf/PoseidonJsBridge/blob/master/README-en.md)  
 
-![image](https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/poseidon_Logo.jpg?raw=true)  
-![image](https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/logo_name.png?raw=true)
+<p align="center">
+   <img alt="GitPoint" title="GitPoint" src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/poseidon_Logo.jpg?raw=true"><br>
+   <img alt="GitPoint" title="GitPoint" src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/logo_name.png?raw=true" width="650">
+ </p>
+
 
 Poseidon 是一座连接 Java 和 JavaScript 的桥梁。它为两者之间的双向调用提供了更简单又更高效的方法。
 
