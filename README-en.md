@@ -62,9 +62,7 @@ BridgeWevView bridgeWebView = (BridgeWebView)findViewById(R.id.webView);
 ```
 
 1. 自定义 Handler
-   Handler 在此处的意思可以理解成基于 poseidon 开发的一系列插件，每个插件有自己的服务(server)，然后每个服务又有着各自的行为(action)。简单来说，如果
-
-从而扩展标准浏览器的能力.  
+   Handler 在此处的意思可以理解成基于 poseidon 开发的一系列插件，每个插件有自己的服务(server)，然后每个服务又有着各自的行为(action)。从而扩展标准浏览器的能力.
 那么如何定义自己的 Hanaler 呢？细节可以参考 customhandler 模块中的 CustomHandler 或 SystemHandler。
 ``` java
 public class SystemHandler extends PoseidonHandler {
