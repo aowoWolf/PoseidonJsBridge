@@ -61,9 +61,9 @@ BridgeWevView bridgeWebView = (BridgeWebView)findViewById(R.id.webView);
 	bridgeWebView.loadUrl(url);
 ```
 
-1. 自定义 Handler
+2. 自定义 Handler
    Handler 在此处的意思可以理解成基于 poseidon 开发的一系列插件，每个插件有自己的服务(server)，然后每个服务又有着各自的行为(action)。从而扩展标准浏览器的能力.
-那么如何定义自己的 Hanaler 呢？细节可以参考 customhandler 模块中的 CustomHandler 或 SystemHandler。
+   那么如何定义自己的 Hanaler 呢？细节可以参考 customhandler 模块中的 CustomHandler 或 SystemHandler。
 ``` java
 public class SystemHandler extends PoseidonHandler {
     public static final String TAG = SystemHandler.class.getSimpleName();
@@ -109,7 +109,7 @@ public class SystemHandler extends PoseidonHandler {
 }
 ```
 
-1. Handler配置
+3. Handler配置
 
 有了 Handler 还不够，还需要把自己若干个 Handler 设置到 HandlerConfig 中，然后 webview 调用 `registerHandler` 方法，这样 BridgeWebView 才有能使用 Handler 里的功能。
 ```java
@@ -137,8 +137,8 @@ JavaScript 端相对比较简单，如下描述：
 
 JavaScript 只要调用 `WebViewJavascriptBridge.exec(service, action, args, success, fail) ` 方法就可以调用自己`Handler`里的逻辑了。
 ``` javascript
-	/**
-	 * @param service	此处的System就是上面SystemConfig中的service
+    /**
+     * @param service	此处的System就是上面SystemConfig中的service
      * @param action SystemHandler中的action名字
      * @param args args默认数组，传递多个参数，请和Handler中execute方法的args对应起来
      * @param sunccess 成功的回调
