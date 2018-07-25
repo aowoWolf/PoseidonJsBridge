@@ -31,7 +31,7 @@
     function registerHandler(handlerName, handler) {
         if(typeof handlerName == 'function'){
             if (WebViewJavascriptBridge._messageHandler) {
-                throw new Error('WebViewJavascriptBridge.init called twice');
+                throw new Error('WebViewJavascriptBridge.registerHandler called twice without handlerName');
             }
             WebViewJavascriptBridge._messageHandler = handlerName;
         }else{
