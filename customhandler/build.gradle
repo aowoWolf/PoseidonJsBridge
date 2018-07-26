@@ -26,5 +26,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':poseidon')
+//    api project(':poseidon')
+    api 'com.github.aowuWolf:poseidon:1.0.0'
 }

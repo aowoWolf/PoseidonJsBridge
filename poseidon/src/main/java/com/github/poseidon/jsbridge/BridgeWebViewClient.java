@@ -19,6 +19,7 @@ public class BridgeWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         try {
+            //url加载的时候已经编码了，此处需要解码
             url = URLDecoder.decode(url, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -40,6 +41,7 @@ public class BridgeWebViewClient extends WebViewClient {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             String url = request.getUrl().toString();
             try {
+                //url加载的时候已经编码了，此处需要解码
                 url = URLDecoder.decode(url, "UTF-8");
             } catch (UnsupportedEncodingException ex) {
                 ex.printStackTrace();

@@ -39,6 +39,7 @@ public class HandlerManager {
 
             if (!wasValidAction) {
                 ActionResult cr = new ActionResult(ActionResult.Status.INVALID_ACTION);
+                //如果子handler的execute方法返回的是false话，执行以下代码会在队列头部添加一个invalid action的message，然后关闭js的接口回调函数
                 webView.insertHeadActionResutlt(cr, callbackID);
             }
         } catch (JSONException e) {
