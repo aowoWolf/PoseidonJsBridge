@@ -146,7 +146,7 @@ JavaScript 只要调用 `WebViewJavascriptBridge.exec(service, action, args, suc
      */
         window.WebViewJavascriptBridge.exec( "System","vibrate",[delay],successCallback,errorCallback );
 ```
-不过，我更推荐将一个 service 的所有 action 的接口放到一个文件，使用起来简单、开发效率也会变高。当然前端人也也可以对这些 JavaScript 的接口使用 promise 进行封装，以下是 [system.js](https://github.com/aowoWolf/PoseidonJsBridge/blob/1ae300163ea63fa2ad9d0d18a6538d846899e12c/app/src/main/assets/libs/system.js):
+不过，我更推荐将一个 service 的所有 action 的接口放到一个文件，使用起来简单、开发效率也会变高。当然前端人员也可以对这些 JavaScript 的接口使用 promise 进行封装，以下是 [system.js](https://github.com/aowoWolf/PoseidonJsBridge/blob/1ae300163ea63fa2ad9d0d18a6538d846899e12c/app/src/main/assets/libs/system.js):
 ``` javascript
 function System(){
 
