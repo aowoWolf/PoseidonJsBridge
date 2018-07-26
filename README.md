@@ -4,7 +4,7 @@
 
 <p align="center">
    <img alt="GitPoint" title="GitPoint" src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/poseidon_Logo.jpg?raw=true"><br>
-   <img alt="GitPoint" title="GitPoint" src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/logo_name.png?raw=true" width="650">
+   <img alt="GitPoint" title="GitPoint" src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/logo_name.png?raw=true" width="550">
  </p>
 
 

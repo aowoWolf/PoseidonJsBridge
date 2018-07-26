@@ -4,7 +4,7 @@ The English document is still under construction.Please read the [中文文档](
 
 <p align="center">
    <img alt="GitPoint" title="GitPoint" src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/poseidon_Logo.jpg?raw=true"><br>
-   <img alt="GitPoint" title="GitPoint" src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/logo_name.png?raw=true" width="650">
+   <img alt="GitPoint" title="GitPoint" src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/logo_name.png?raw=true" width="550">
  </p>
 
 Poseidon 是一座连接 Java 和 JavaScript 的桥梁。它为两者之间的双向调用提供了更简单又更高效的方法。
