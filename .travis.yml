@@ -1,0 +1,20 @@
+language: android
+android:
+  components:
+    - tools
+    - build-tools-27.0.3
+    - android-28
+
+    - extra-google-google_play_services
+    - extra-android-support
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - addon-google_apis-google-26
+
+    # Specify at least one system image,
+    # if you need to run emulator(s) during your tests
+    # - sys-img-armeabi-v7a-android-26
+    # - sys-img-armeabi-v7a-android-17
+
+  script:
+    - ./gradlew assembleRelease
