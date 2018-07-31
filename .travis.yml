@@ -32,5 +32,4 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
- script:
-   - ./gradlew assembleRelease
+ script: ./gradlew build
