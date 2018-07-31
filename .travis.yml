@@ -1,6 +1,6 @@
 language: android
-jdk: oraclejdk8
-sudo: false
+#jdk: oraclejdk8
+#sudo: false
 android:
   components:
     - tools
@@ -18,9 +18,9 @@ android:
     # - sys-img-armeabi-v7a-android-26
     # - sys-img-armeabi-v7a-android-17
 
-  licenses:
-      - android-sdk-license-.+
-      - '.+'
+#  licenses:
+#      - android-sdk-license-.+
+#      - '.+'
 
 before_install:
   - chmod +x gradlew
