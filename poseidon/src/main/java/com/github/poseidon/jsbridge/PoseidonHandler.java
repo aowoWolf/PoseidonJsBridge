@@ -36,7 +36,7 @@ public abstract class PoseidonHandler {
      *                 <div class = "en"></div>
      * @return <div class="zh"></div>  返回true，该handler才能正常运行，返回false，则js端将会收到"invalid action"的信息,默认情况下返回false.
      * <div class = "en"></div>
-     * @throws JSONException
+     * @throws JSONException JSONException
      */
     public boolean execute(String action, String rawArgs, CallBack callback) throws JSONException {
         JSONArray args = new JSONArray(rawArgs);
@@ -52,7 +52,7 @@ public abstract class PoseidonHandler {
      *                 <div class = "en"></div>
      * @return <div class="zh"></div>  返回true，该handler才能正常运行，返回false，则js端将会收到"invalid action"的信息,默认情况下返回false.
      * <div class = "en"></div>
-     * @throws JSONException
+     * @throws JSONException JSONException
      */
     public boolean execute(String action, JSONArray args, CallBack callback) throws JSONException {
         return false;
