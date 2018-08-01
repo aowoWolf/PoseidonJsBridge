@@ -3,8 +3,8 @@
 The English document is still under construction.Please read the [中文文档](https://github.com/aowoWolf/PoseidonJsBridge)  
 
 <p align="center">
-   <img alt="GitPoint" title="GitPoint" src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/poseidon_Logo.jpg?raw=true"><br>
-   <img alt="GitPoint" title="GitPoint" src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/logo_name.png?raw=true" width="550">
+   <img  src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/poseidon_Logo.jpg?raw=true"><br>
+   <img  src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/logo_name.png?raw=true" width="550">
  </p>
  
 [![Build Status](https://travis-ci.org/aowoWolf/PoseidonJsBridge.svg?branch=master)](https://travis-ci.org/aowoWolf/PoseidonJsBridge)
@@ -197,6 +197,12 @@ poseidonBridge.registerHandler(function(data) {
 });
 ```
 Java只需要调用`dispatchedJSEvent(String data)`便可。
+
+## Poseidon工作流程
+<p align="center">
+   <img  src="https://github.com/aowoWolf/PoseidonJsBridge/blob/1d035b4deaff904bb3eadbf86cc8fc7282f965c3/readmeRes/flowchart.png?raw=true">
+ </p>
+ 
 ## 计划
  - 将```webview.registerHandler(new HanderlConfig());```换成其他的方式，至于什么方式还没想好。
  - 返回到js的消息队里里的信息，统一放到js端处理
