@@ -11,7 +11,7 @@
 
 Poseidon is a bridge connecting Java and JavaScript. It provides a simpler and more efficient methods for two-way calls between the two.
 
-##Function
+## Function
 
 - Implement two-way calls between JavaScript and Java.
 - can drive and walk ​:yum:​
@@ -22,7 +22,7 @@ Poseidon is a bridge connecting Java and JavaScript. It provides a simpler and m
   Because it is just screenshot,So you can only see information about the device, without the effects of the vibration and the flash.Of course, you can download this[Demo.apk](https://github.com/aowoWolf/PoseidonJsBridge/releases/download/V1.00.00_20180723/PoseidonDemo.apk).
 
   ![image](https://github.com/aowoWolf/PoseidonJsBridge/blob/1ae300163ea63fa2ad9d0d18a6538d846899e12c/readmeRes/poseidon_systemtest.gif?raw=true)  
-  The following picture shows how JavaScript calls Java, the Java layer can return either a single message or several messages as long as you want.  
+  The following picture shows how JavaScript calls Java, the Java layer can return either a **single** message or **several** messages as long as you want.  
   ![image](https://github.com/aowoWolf/PoseidonJsBridge/blob/1ae300163ea63fa2ad9d0d18a6538d846899e12c/readmeRes/poseidon_customtest.gif?raw=true)
 
 
@@ -63,8 +63,8 @@ BridgeWevView bridgeWebView = (BridgeWebView)findViewById(R.id.webView);
 	bridgeWebView.loadUrl(url);
 ```
 
-2. Custom Handler
-   What Handler means here can be understood as a series of plug-ins based on poseidon.Each plug-in has its own server, and each server has its own action, thereby extend the capabilities of standard browsers.
+2. Custom Handler 
+   What Handler means here can be understood as a series of plug-ins based on poseidon.Each plug-in has its own server, and each server has its own action, thereby extend the capabilities of standard browsers.  
    So how do you define your own Hanaler? Refer to the CustomHandler or SystemHandler in the customhandler module for details.
 ``` java
 public class SystemHandler extends PoseidonHandler {
@@ -74,7 +74,7 @@ public class SystemHandler extends PoseidonHandler {
     private static final String ACTION_LIGHT = "light";
     private static final String ACTION_DEVICEINFO = "deviceinfo";
 
-	private Vibrator vibrator;
+    private Vibrator vibrator;
     
     //This method mainly initializes some simple configurations, it will be executed the first time it was loaded and will no longer be executed.
     @Override
@@ -111,9 +111,9 @@ public class SystemHandler extends PoseidonHandler {
 }
 ```
 
-3.Handler configuration
+3. Handler configuration
 
-With Handler is not enough, you need to set several of your own Handler into the HandlerConfig, and then webview calls the registerHandler method, so that BridgeWebView can use the functionality in Handler.
+With Handler is not enough, you need to set several of your own Handler into the HandlerConfig, and then webview calls the `registerHandler ` method, so that BridgeWebView can use the functionality in Handler.
 ```java
 public class SystemConfig implements HandlerConfig{
     /**
@@ -137,7 +137,7 @@ Now the Java side configuration is almost complete.
 
 The JavaScript side is relatively simple, as described below：
 
-JavaScript can invoke logic in its own Handler just by calling the WebViewJavascriptBridge.exec(service, action, args, success, fail) method.
+JavaScript can invoke logic in its own Handler just by calling the `WebViewJavascriptBridge.exec(service, action, args, success, fail) `method.
 ``` javascript
     /**
      * @param service	The System here is the service in the SystemConfig above
@@ -169,8 +169,8 @@ function System(){
 }
 ```
 ###Java calls JavaScript
-Java calls JavaScript mainly through three dispatchedJsEvent methods in PoseidonHandler.java.
-1. Java calls an event called "my_handler" and requires a callback function to return the information returned by JavaScript.
+Java calls JavaScript mainly through three `dispatchedJsEvent ` methods in PoseidonHandler.java.
+1. Java calls an event called `my_handler` and requires a callback function to return the information returned by JavaScript.
 ``` java
 //The first parameter is the name of handler registered on the js side, the second parameter is the data to be sent, and the third parameter is the callback function that receives the data returned from the js.
 dispatchedJSEvent("my_handler", "Data from Java>>>", new ResponseCallback() {
@@ -180,15 +180,15 @@ dispatchedJSEvent("my_handler", "Data from Java>>>", new ResponseCallback() {
 	}
 }
 ```
-Then the Js layer can register a my_handler event, as follows:
+Then the Js layer can register a `my_handler` event, as follows:
 ```javascript
 window.WebViewJavascriptBridge.registerHandler("my_handler", function(data, responseCallback) {
 	console.log(data);//Data from Java>>>
 	responseCallback("hello world");
 });
 ```
-2. When Java calls the my_handler event without the need for a callback function.  
-  Then the Java side just needs to call the dispatchedJSEvent(String handlerName, String data) function.
+2. When Java calls the `my_handler `event without the need for a callback function.  
+  Then the Java side just needs to call the `dispatchedJSEvent(String handlerName, String data) ` method.
 3. Java can send data directly
 ```javascript
 //The js side only needs to register a nameless handler，
@@ -196,7 +196,7 @@ poseidonBridge.registerHandler(function(data) {
 	console.log(data);
 });
 ```
-Java only needs to call dispatchedJSEvent(String data).
+Java only needs to call `dispatchedJSEvent(String data)`.
 
 ## workflow of Poseidon
 <p align="center">
@@ -204,7 +204,7 @@ Java only needs to call dispatchedJSEvent(String data).
  </p>
 
 ## Plan
- - Change the webview.registerHandler(new HanderlConfig()); to something else, but i haven't figured out what way to do it.
+ - Change the `webview.registerHandler(new HanderlConfig());` to something else, but i haven't figured out what way to do it.
  - Information returned to the js message team, unified into the js side processing.
 
 ## Surprise
