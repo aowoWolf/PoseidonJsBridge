@@ -22,7 +22,7 @@ Poseidon is a bridge connecting Java and JavaScript. It provides a simpler and m
   Because it is just screenshot,So you can only see information about the device, without the effects of the vibration and the flash.Of course, you can download this[Demo.apk](https://github.com/aowoWolf/PoseidonJsBridge/releases/download/V1.00.00_20180723/PoseidonDemo.apk).
 
   ![image](https://github.com/aowoWolf/PoseidonJsBridge/blob/1ae300163ea63fa2ad9d0d18a6538d846899e12c/readmeRes/poseidon_systemtest.gif?raw=true)  
-  The following picture shows how JavaScript calls Java, the Java layer can return either a single message or several messages as long as you want.
+  The following picture shows how JavaScript calls Java, the Java layer can return either a single message or several messages as long as you want.  
   ![image](https://github.com/aowoWolf/PoseidonJsBridge/blob/1ae300163ea63fa2ad9d0d18a6538d846899e12c/readmeRes/poseidon_customtest.gif?raw=true)
 
 
