@@ -1,35 +1,35 @@
 # Poseidon
 
-The English document is still under construction.Please read the [中文文档](https://github.com/aowoWolf/PoseidonJsBridge)  
+The English document is still under construction.Please read the [Chinese document](https://github.com/aowoWolf/PoseidonJsBridge)  
 
 <p align="center">
    <img  src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/poseidon_Logo.jpg?raw=true"><br>
    <img  src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/logo_name.png?raw=true" width="550">
  </p>
- 
+
 [![Build Status](https://travis-ci.org/aowoWolf/PoseidonJsBridge.svg?branch=master)](https://travis-ci.org/aowoWolf/PoseidonJsBridge)
 
-Poseidon 是一座连接 Java 和 JavaScript 的桥梁。它为两者之间的双向调用提供了更简单又更高效的方法。
+Poseidon is a bridge connecting Java and JavaScript. It provides a simpler and more efficient methods for two-way calls between the two.
 
-## 功能
+##Function
 
-- 实现 JavaScript 与 Java 之间双向调用
-- 能行车、能走人 :yum:
+- Implement two-way calls between JavaScript and Java.
+- can drive and walk ​:yum:​
 
-## 演示
-- 演示设备：魅蓝note2
-- Android 版本：5.1
-  因为只是屏幕截图，所以只能看到设备的信息，看不到震动和闪光灯的效果。当然你也可以下载这个[Demo.apk](https://github.com/aowoWolf/PoseidonJsBridge/releases/download/V1.00.00_20180723/PoseidonDemo.apk).
+## Demonstration
+- Demonstration equipment: Meizu note2
+- Android version: 5.1
+  Because it is just screenshot,So you can only see information about the device, without the effects of the vibration and the flash.Of course, you can download this[Demo.apk](https://github.com/aowoWolf/PoseidonJsBridge/releases/download/V1.00.00_20180723/PoseidonDemo.apk).
 
   ![image](https://github.com/aowoWolf/PoseidonJsBridge/blob/1ae300163ea63fa2ad9d0d18a6538d846899e12c/readmeRes/poseidon_systemtest.gif?raw=true)  
-  以下图片主要演示 JavaScript 调用 Java 的时候，Java 层可以返回**单条**信息也可以返回**若干条**消息，只要你想。
+  The following picture shows how JavaScript calls Java, the Java layer can return either a single message or several messages as long as you want.
   ![image](https://github.com/aowoWolf/PoseidonJsBridge/blob/1ae300163ea63fa2ad9d0d18a6538d846899e12c/readmeRes/poseidon_customtest.gif?raw=true)
 
 
-## 开始
-如果你想使用 Poseidon,你可以把它当做一个依赖添加到你的项目中。
+## Begin
+If you want to use Poseidon, you can add it to your project as a dependency.
 
-使用Maven：
+Use Maven:
 
 ``` xml
 <dependency>
@@ -39,23 +39,23 @@ Poseidon 是一座连接 Java 和 JavaScript 的桥梁。它为两者之间的�
   <type>pom</type>
 </dependency>
 ```
-或者你可以使用 Gradle：
+Or you can use Gradle:
 
 ``` groovy
 compile 'com.github.aowuWolf:poseidon:1.0.0'
 ```
-## 使用
+## make use of
 
-### JavaScript 调用 Java
+### JavaScript calls Java
 
-在 Java 端分三步配置，如下描述：
+There are three steps to configure on the Java side, as described below：
 
-1. 初始化 WebView
+1. Initialize WebView
 
 ```java
 BridgeWevView bridgeWebView = (BridgeWebView)findViewById(R.id.webView);
 
-	//注册自己定义的handler
+	//Register your own defined handler
 	bridgeWebView.registerHandler(new CustomConfig());
 	bridgeWebView.registerHandler(new SystemConfig());
 
@@ -63,9 +63,9 @@ BridgeWevView bridgeWebView = (BridgeWebView)findViewById(R.id.webView);
 	bridgeWebView.loadUrl(url);
 ```
 
-2. 自定义 Handler
-   Handler 在此处的意思可以理解成基于 poseidon 开发的一系列插件，每个插件有自己的服务(server)，然后每个服务又有着各自的行为(action)。从而扩展标准浏览器的能力.
-   那么如何定义自己的 Hanaler 呢？细节可以参考 customhandler 模块中的 CustomHandler 或 SystemHandler。
+2. Custom Handler
+   What Handler means here can be understood as a series of plug-ins based on poseidon.Each plug-in has its own server, and each server has its own action, thereby extend the capabilities of standard browsers.
+   So how do you define your own Hanaler? Refer to the CustomHandler or SystemHandler in the customhandler module for details.
 ``` java
 public class SystemHandler extends PoseidonHandler {
     public static final String TAG = SystemHandler.class.getSimpleName();
@@ -76,11 +76,11 @@ public class SystemHandler extends PoseidonHandler {
 
 	private Vibrator vibrator;
     
-    //此方法主要初始化一些简单的配置，此方法会在第一次加载的时候执行，往后不再执行
+    //This method mainly initializes some simple configurations, it will be executed the first time it was loaded and will no longer be executed.
     @Override
     protected void initialize(BridgeWebView webview, PoseidonInterface poseidon) {
         super.initialize(webview, poseidon);
-        //初始化振动的配置
+        //Initial vibration configuration
         Context context = webview.getContext();
         vibrator = (Vibrator) context.getSystemService(context.VIBRATOR_SERVICE);
     }
@@ -89,21 +89,21 @@ public class SystemHandler extends PoseidonHandler {
      * @param action
      * @param args
      * @param callback
-     * @return true表示插件正常工作，false的话，js端将不能收到正确的反馈信息，只能收到"Invaid action"的信息
+     * @return True indicates that the plug-in works properly,if it's false, the JS side will not receive the correct feedback information, only receive the information of "Invaid action"
      * @throws JSONException
      */
     @Override
     public boolean execute(String action, JSONArray args, CallBack callback) throws JSONException {
-        if (ACTION_VIBRATE.equals(action)) {//震动
+        if (ACTION_VIBRATE.equals(action)) {//vibration
             int delay = args.getInt(0);
             vibrator.vibrate(delay);
             callback.success(false);
             return true;
-        } else if (ACTION_LIGHT.equals(action)) {//闪光灯
-            //切换闪光灯
+        } else if (ACTION_LIGHT.equals(action)) {//flash lamp
+            //switch flash
             return true;
         } else if (ACTION_DEVICEINFO.equals(action)) {
-           //获取设备信息
+           //get device information
             return true;
         }
         return super.execute(action, args, callback);
@@ -111,14 +111,14 @@ public class SystemHandler extends PoseidonHandler {
 }
 ```
 
-3. Handler配置
+3.Handler configuration
 
-有了 Handler 还不够，还需要把自己若干个 Handler 设置到 HandlerConfig 中，然后 webview 调用 `registerHandler` 方法，这样 BridgeWebView 才有能使用 Handler 里的功能。
+With Handler is not enough, you need to set several of your own Handler into the HandlerConfig, and then webview calls the registerHandler method, so that BridgeWebView can use the functionality in Handler.
 ```java
 public class SystemConfig implements HandlerConfig{
     /**
      * map.put("service",Handler.class)
-     * 此service对应js端的service，需要保持一致
+     * This service needs to be consistent with the service on the js side
      *
      * @return
      */
@@ -126,33 +126,33 @@ public class SystemConfig implements HandlerConfig{
     public HashMap<String, Class<? extends PoseidonHandler>> getServiceMap() {
         return new HashMap<String, Class<? extends PoseidonHandler>>() {
             {
-            	//这里的key就是handler中的service，如果还有其他的服务，可以继续put
+            	//The key here is the service in handler. If there are other services, you can continue put
                 put("System", SystemHandler.class);
             }
         };
     }
 }
 ```
-到此，Java 端配置就基本完成了。
+Now the Java side configuration is almost complete.
 
-JavaScript 端相对比较简单，如下描述：
+The JavaScript side is relatively simple, as described below：
 
-JavaScript 只要调用 `WebViewJavascriptBridge.exec(service, action, args, success, fail) ` 方法就可以调用自己`Handler`里的逻辑了。
+JavaScript can invoke logic in its own Handler just by calling the WebViewJavascriptBridge.exec(service, action, args, success, fail) method.
 ``` javascript
     /**
-     * @param service	此处的System就是上面SystemConfig中的service
-     * @param action SystemHandler中的action名字
-     * @param args args默认数组，传递多个参数，请和Handler中execute方法的args对应起来
-     * @param sunccess 成功的回调
-     * @param fail 失败的回调
+     * @param service	The System here is the service in the SystemConfig above
+     * @param action Action’s name in SystemHandler
+     * @param args The args default array, passing multiple parameters, corresponds to the args of the execute method in Handler
+     * @param sunccess Successful callback
+     * @param fail Failed callback
      */
         window.WebViewJavascriptBridge.exec( "System","vibrate",[delay],successCallback,errorCallback );
 ```
-不过，我更推荐将一个 service 的所有 action 的接口放到一个文件，使用起来简单、开发效率也会变高。当然前端人员也可以对这些 JavaScript 的接口使用 promise 进行封装，以下是 [system.js](https://github.com/aowoWolf/PoseidonJsBridge/blob/1ae300163ea63fa2ad9d0d18a6538d846899e12c/app/src/main/assets/libs/system.js):
+However, I prefer to put all of the action interfaces of a service in one file, which is easy to use and more efficient in development. Of course, front-end personnel can also use promise to encapsulate these JavaScript interfaces.The following are [system.js](https://github.com/aowoWolf/PoseidonJsBridge/blob/1ae300163ea63fa2ad9d0d18a6538d846899e12c/app/src/main/assets/libs/system.js):
 ``` javascript
 function System(){
 
-    //常量,当前handler的服务名
+    //Constant, the service name of the current handler
     this.SERVICE_NAME = 'System'
 
     this.vibrate = function(delay,successCallback,errorCallback){
@@ -168,44 +168,44 @@ function System(){
     }
 }
 ```
-### Java调用JavaScript
-Java调用 JavaScript  主要通过 PoseidonHandler.java 里的三个 `dispatchedJsEvent` 方法
-1. Java调用一个名为"my_handler"的事件，并且需要回调函数返回 JavaScript 返回的信息
+###Java calls JavaScript
+Java calls JavaScript mainly through three dispatchedJsEvent methods in PoseidonHandler.java.
+1. Java calls an event called "my_handler" and requires a callback function to return the information returned by JavaScript.
 ``` java
-//第一个参数是js端注册的handler名，第二个参数是要发送的数据，第三个参数是回调函数，接收从js返回的数据
+//The first parameter is the name of handler registered on the js side, the second parameter is the data to be sent, and the third parameter is the callback function that receives the data returned from the js.
 dispatchedJSEvent("my_handler", "Data from Java>>>", new ResponseCallback() {
 	@Override
 	public void receiveDataFromJs(String data) {
-		//处理js反馈回来的数据
+		//Processing data returned by js
 	}
 }
 ```
-然后Js层可以注册一个`my_handler`的事件，如下：
+Then the Js layer can register a my_handler event, as follows:
 ```javascript
 window.WebViewJavascriptBridge.registerHandler("my_handler", function(data, responseCallback) {
 	console.log(data);//Data from Java>>>
 	responseCallback("hello world");
 });
 ```
-2. Java调用`my_handler`事件，不需要回调函数  
-  那么Java端只需要调用`dispatchedJSEvent(String handlerName, String data)`这个函数就可以了。
-3. Java 直接发送数据
+2. When Java calls the my_handler event without the need for a callback function.  
+  Then the Java side just needs to call the dispatchedJSEvent(String handlerName, String data) function.
+3. Java can send data directly
 ```javascript
-//js端只需要注册一个无名的handler即可，
+//The js side only needs to register a nameless handler，
 poseidonBridge.registerHandler(function(data) {
 	console.log(data);
 });
 ```
-Java只需要调用`dispatchedJSEvent(String data)`便可。
+Java only needs to call dispatchedJSEvent(String data).
 
-## Poseidon工作流程
+## workflow of Poseidon
 <p align="center">
    <img  src="https://github.com/aowoWolf/PoseidonJsBridge/blob/1d035b4deaff904bb3eadbf86cc8fc7282f965c3/readmeRes/flowchart.png?raw=true">
  </p>
- 
-## 计划
- - 将```webview.registerHandler(new HanderlConfig());```换成其他的方式，至于什么方式还没想好。
- - 返回到js的消息队里里的信息，统一放到js端处理
 
-## 彩蛋
-demo还有个仿微信打飞机的小游戏。这不是重点，重点是我添加了一个坠机会振动的功能。其实也很简单，就是调用 SystemHandler 的振动 action。[点我下载](https://github.com/aowoWolf/PoseidonJsBridge/releases/download/V1.00.00_20180723/PoseidonDemo.apk)
+## Plan
+ - Change the webview.registerHandler(new HanderlConfig()); to something else, but i haven't figured out what way to do it.
+ - Information returned to the js message team, unified into the js side processing.
+
+## Surprise
+The Demo has a mini game of playing airplanes like the game in wechat. That's not the point. The point is, I added a feature that vibrates when it crashes.In fact, it is also very simple,Just calling the vibrational action of SystemHandler.[Click me to download](https://github.com/aowoWolf/PoseidonJsBridge/releases/download/V1.00.00_20180723/PoseidonDemo.apk)
