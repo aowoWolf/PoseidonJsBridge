@@ -1,6 +1,6 @@
 # Poseidon
 
-The English document is still under construction.Please read the [Chinese document](https://github.com/aowoWolf/PoseidonJsBridge)  
+[中文文档](https://github.com/aowoWolf/PoseidonJsBridge)  
 
 <p align="center">
    <img  src="https://github.com/aowoWolf/PoseidonJsBridge/blob/master/readmeRes/poseidon_Logo.jpg?raw=true"><br>
